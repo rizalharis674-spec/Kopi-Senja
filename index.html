@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kopi Senja — Nikmati Senja dalam Setiap Tegukan</title>
+  <meta name="description" content="Kopi Senja — kedai kopi modern dengan biji kopi lokal pilihan. Tempat terbaik untuk melambat dan menikmati senja." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: {
+              50:  '#FDFAF6',
+              100: '#F9F1E7',
+              200: '#F1E3D3',
+              300: '#E5CEB4',
+            },
+            coffee: {
+              50:  '#F7F3EF',
+              100: '#EADFD6',
+              200: '#D6C0AE',
+              300: '#BC9A80',
+              400: '#A2765A',
+              500: '#875B41',
+              600: '#6F4530',
+              700: '#573525',
+              800: '#3B2318',
+              900: '#26160F',
+            },
+            gold: '#C8A27A',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { -webkit-tap-highlight-color: transparent; }
+    body { overflow-x: hidden; }
+
+    /* ---------- Navbar states ---------- */
+    #navbar {
+      transition: background-color .45s ease, box-shadow .45s ease, backdrop-filter .45s ease;
+    }
+    #navbar .nav-link {
+      color: rgba(253, 250, 246, .82);
+      transition: color .3s ease;
+    }
+    #navbar .nav-link:hover { color: #FFFFFF; }
+    #navbar .brand { color: #FDFAF6; }
+    #navbar .brand-accent { color: #C8A27A; }
+    #navbar .nav-cta { background: #FDFAF6; color: #26160F; }
+    #navbar .nav-toggle { color: #FDFAF6; }
+
+    #navbar.scrolled {
+      background: rgba(253, 250, 246, .92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 34px -18px rgba(38, 22, 15, .38);
+    }
+    #navbar.scrolled .nav-link { color: #573525; }
+    #navbar.scrolled .nav-link:hover { color: #A2765A; }
+    #navbar.scrolled .nav-link.active { color: #6F4530; }
+    #navbar.scrolled .brand { color: #26160F; }
+    #navbar.scrolled .nav-cta { background: #6F4530; color: #FDFAF6; }
+    #navbar.scrolled .nav-toggle { color: #26160F; }
+
+    /* Garis bawah untuk link aktif (desktop) */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px;
+      height: 1.5px; width: 0;
+      background: currentColor;
+      transition: width .35s cubic-bezier(.22,1,.36,1);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+
+    /* ---------- Scroll reveal ---------- */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+      will-change: opacity, transform;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---------- Misc ---------- */
+    .grain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .5;
+      background-image: radial-gradient(rgba(111, 69, 48, .08) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important;
+      }
+      [data-reveal] { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* Scrollbar halus */
+    ::selection { background: #6F4530; color: #FDFAF6; }
+  </style>
+</head>
+
+<body class="bg-cream-50 font-sans text-coffee-800 antialiased">
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================= -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="flex h-20 items-center justify-between">
+
+        <!-- Brand -->
+        <a href="#beranda" class="brand group flex items-center gap-2.5 font-display text-2xl font-bold tracking-tight transition-colors duration-300">
+          <span class="grid h-9 w-9 place-items-center rounded-full bg-coffee-600 text-cream-50 transition-transform duration-500 group-hover:rotate-12">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" />
+              <path d="M6 1v3M10 1v3M14 1v3" />
+            </svg>
+          </span>
+          <span>Kopi <span class="brand-accent">Senja</span></span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden lg:block" aria-label="Navigasi utama">
+          <ul class="flex items-center gap-9 text-sm font-medium">
+            <li><a class="nav-link" href="#beranda">Beranda</a></li>
+            <li><a class="nav-link" href="#tentang">Tentang Kami</a></li>
+            <li><a class="nav-link" href="#menu">Menu</a></li>
+            <li><a class="nav-link" href="#testimoni">Testimoni</a></li>
+            <li><a class="nav-link" href="#kontak">Kontak</a></li>
+          </ul>
+        </nav>
+
+        <!-- CTA + Mobile toggle -->
+        <div class="flex items-center gap-2">
+          <a href="#kontak"
+             class="nav-cta hidden items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg lg:inline-flex">
+            Pesan Sekarang
+          </a>
+
+          <button id="menuBtn" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu"
+                  class="nav-toggle grid h-11 w-11 place-items-center rounded-full transition-colors duration-300 hover:bg-current/10 lg:hidden">
+            <svg id="iconOpen" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+            <svg id="iconClose" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="max-h-0 overflow-hidden border-t border-coffee-100/70 bg-cream-50/97 backdrop-blur-lg transition-[max-height] duration-500 ease-in-out lg:hidden">
+      <nav class="mx-auto max-w-7xl space-y-1 px-5 py-6 sm:px-8" aria-label="Navigasi seluler">
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-coffee-700 transition hover:bg-cream-100" href="#beranda">Beranda</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-coffee-700 transition hover:bg-cream-100" href="#tentang">Tentang Kami</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-coffee-700 transition hover:bg-cream-100" href="#menu">Menu</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-coffee-700 transition hover:bg-cream-100" href="#testimoni">Testimoni</a>
+        <a class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-coffee-700 transition hover:bg-cream-100" href="#kontak">Kontak</a>
+        <a class="mobile-link mt-3 block rounded-full bg-coffee-600 px-6 py-3.5 text-center text-sm font-semibold text-cream-50 shadow-md transition hover:bg-coffee-700" href="#kontak">
+          Pesan Sekarang
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================= -->
+  <section id="beranda" class="relative flex min-h-screen items-center overflow-hidden scroll-mt-24">
+    <!-- Background -->
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1920&q=80"
+           alt="Suasana hangat kedai kopi Kopi Senja"
+           class="h-full w-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-br from-coffee-900/95 via-coffee-900/80 to-coffee-800/55"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-coffee-900 via-transparent to-transparent"></div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32 sm:px-8 lg:pb-32 lg:pt-40">
+      <div class="max-w-2xl">
+
+        <span data-reveal class="inline-flex items-center gap-2.5 rounded-full border border-cream-100/25 bg-cream-50/10 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-cream-100 backdrop-blur-sm">
+          <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+          Biji Kopi Lokal Pilihan
+        </span>
+
+        <h1 data-reveal style="transition-delay:120ms"
+            class="mt-7 font-display text-[2.6rem] leading-[1.08] text-cream-50 sm:text-5xl lg:text-6xl xl:text-7xl">
+          Nikmati <em class="italic text-gold">Senja</em><br class="hidden sm:block" />
+          dalam Setiap Tegukan
+        </h1>
+
+        <p data-reveal style="transition-delay:240ms"
+           class="mt-6 max-w-xl text-base leading-relaxed text-cream-100/80 sm:text-lg">
+          Secangkir kopi yang diracik hangat dari biji arabika dataran tinggi Nusantara.
+          Tempat terbaik untuk melambat, bercerita, dan menikmati senja bersama orang tersayang.
+        </p>
+
+        <div data-reveal style="transition-delay:360ms" class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="#menu"
+             class="group inline-flex items-center gap-2.5 rounded-full bg-cream-50 px-7 py-3.5 text-sm font-semibold text-coffee-800 shadow-xl shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white">
+            Lihat Menu Kami
+            <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          <a href="#tentang"
+             class="inline-flex items-center gap-2.5 rounded-full border border-cream-100/30 px-7 py-3.5 text-sm font-semibold text-cream-50 transition-all duration-300 hover:bg-cream-50/10">
+            Cerita Kami
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div data-reveal style="transition-delay:480ms"
+             class="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-cream-100/15 pt-8">
+          <div>
+            <p class="font-display text-3xl text-cream-50">12+</p>
+            <p class="mt-1 text-[11px] uppercase tracking-[0.15em] text-cream-100/55">Varian Kopi</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl text-cream-50">4.9</p>
+            <p class="mt-1 text-[11px] uppercase tracking-[0.15em] text-cream-100/55">Rating Tamu</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl text-cream-50">2018</p>
+            <p class="mt-1 text-[11px] uppercase tracking-[0.15em] text-cream-100/55">Sejak Tahun</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <a href="#tentang" class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-cream-100/55 transition hover:text-cream-50 lg:flex">
+      <span class="text-[10px] uppercase tracking-[0.3em]">Gulir</span>
+      <span class="h-10 w-px bg-gradient-to-b from-cream-100/70 to-transparent"></span>
+    </a>
+  </section>
+
+
+  <!-- ============================================================
+       TENTANG KAMI
+  ============================================================= -->
+  <section id="tentang" class="relative scroll-mt-24 overflow-hidden bg-cream-50 py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
+
+        <!-- Gambar -->
+        <div data-reveal class="relative">
+          <div class="overflow-hidden rounded-[2rem] shadow-2xl shadow-coffee-900/25">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=80"
+                 alt="Biji kopi lokal pilihan Kopi Senja"
+                 class="h-[380px] w-full object-cover transition-transform duration-[1.2s] hover:scale-105 lg:h-[540px]" />
+          </div>
+
+          <!-- Kartu melayang -->
+          <div class="floaty absolute -bottom-8 right-4 w-56 rounded-2xl border border-cream-200 bg-cream-50/95 p-5 shadow-2xl shadow-coffee-900/20 backdrop-blur sm:-right-8">
+            <div class="flex items-center gap-3">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-coffee-600 text-cream-50">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z" />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-display text-lg leading-tight text-coffee-800">Sejak 2018</p>
+                <p class="text-[11px] uppercase tracking-wider text-coffee-400">Di-roasting tiap minggu</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dekorasi -->
+          <div class="absolute -left-6 -top-6 -z-10 h-32 w-32 rounded-full bg-cream-200/70 blur-2xl"></div>
+        </div>
+
+        <!-- Teks -->
+        <div>
+          <span data-reveal class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-coffee-400">
+            <span class="h-px w-8 bg-coffee-300"></span> Tentang Kami
+          </span>
+
+          <h2 data-reveal style="transition-delay:100ms"
+              class="mt-5 font-display text-3xl leading-tight text-coffee-900 sm:text-4xl lg:text-[2.75rem]">
+            Dari Kebun Lokal,<br /> ke Cangkir Anda
+          </h2>
+
+          <p data-reveal style="transition-delay:180ms" class="mt-6 leading-relaxed text-coffee-600/90">
+            Kopi Senja lahir dari kecintaan sederhana pada secangkir kopi yang jujur. Kami bekerja
+            langsung bersama para petani di dataran tinggi Gayo, Toraja, dan Kintamani untuk
+            memilih biji terbaik dari setiap panen.
+          </p>
+
+          <p data-reveal style="transition-delay:240ms" class="mt-4 leading-relaxed text-coffee-600/90">
+            Setiap biji disangrai dalam batch kecil di kedai kami, lalu diseduh dengan tangan oleh
+            barista yang mengenal karakter tiap rasanya. Hasilnya bukan sekadar minuman, tapi
+            sebuah momen yang layak dinikmati perlahan.
+          </p>
+
+          <!-- Poin keunggulan -->
+          <div class="mt-9 grid gap-5 sm:grid-cols-2">
+            <div data-reveal style="transition-delay:300ms" class="flex gap-3.5">
+              <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-coffee-100 text-coffee-600">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-coffee-800">100% Biji Lokal</p>
+                <p class="mt-0.5 text-sm text-coffee-500/80">Langsung dari petani Nusantara.</p>
+              </div>
+            </div>
+
+            <div data-reveal style="transition-delay:360ms" class="flex gap-3.5">
+              <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-coffee-100 text-coffee-600">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-coffee-800">Roasting Batch Kecil</p>
+                <p class="mt-0.5 text-sm text-coffee-500/80">Selalu segar setiap minggunya.</p>
+              </div>
+            </div>
+
+            <div data-reveal style="transition-delay:420ms" class="flex gap-3.5">
+              <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-coffee-100 text-coffee-600">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-coffee-800">Barista Berpengalaman</p>
+                <p class="mt-0.5 text-sm text-coffee-500/80">Diseduh manual dengan presisi.</p>
+              </div>
+            </div>
+
+            <div data-reveal style="transition-delay:480ms" class="flex gap-3.5">
+              <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-coffee-100 text-coffee-600">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-coffee-800">Ruang Hangat</p>
+                <p class="mt-0.5 text-sm text-coffee-500/80">Nyaman untuk kerja maupun bercerita.</p>
+              </div>
+            </div>
+          </div>
+
+          <a data-reveal style="transition-delay:540ms" href="#menu"
+             class="group mt-10 inline-flex items-center gap-2.5 rounded-full bg-coffee-700 px-7 py-3.5 text-sm font-semibold text-cream-50 shadow-lg shadow-coffee-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-coffee-800">
+            Jelajahi Menu
+            <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       MENU UNGGULAN
+  ============================================================= -->
+  <section id="menu" class="relative scroll-mt-24 bg-cream-100 py-24 lg:py-32">
+    <div class="grain absolute inset-0"></div>
+
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+
+      <!-- Heading -->
+      <div class="mx-auto max-w-2xl text-center">
+        <span data-reveal class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-coffee-400">
+          <span class="h-px w-8 bg-coffee-300"></span> Menu Unggulan <span class="h-px w-8 bg-coffee-300"></span>
+        </span>
+        <h2 data-reveal style="transition-delay:100ms" class="mt-5 font-display text-3xl leading-tight text-coffee-900 sm:text-4xl lg:text-[2.75rem]">
+          Favorit di Setiap Senja
+        </h2>
+        <p data-reveal style="transition-delay:180ms" class="mt-5 leading-relaxed text-coffee-600/85">
+          Tiga sajian yang paling sering dipesan tamu kami. Diracik dengan bahan pilihan
+          dan penuh ketelitian di setiap detailnya.
+        </p>
+      </div>
+
+      <!-- Kartu Menu -->
+      <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Kartu 1 -->
+        <article data-reveal style="transition-delay:120ms"
+                 class="group overflow-hidden rounded-3xl bg-cream-50 shadow-[0_14px_44px_-24px_rgba(38,22,15,.45)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_64px_-28px_rgba(38,22,15,.5)]">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80"
+                 alt="Kopi Susu Senja" class="h-full w-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
+            <span class="absolute left-4 top-4 rounded-full bg-cream-50/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-coffee-700 shadow-sm backdrop-blur">
+              Best Seller
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4">
+              <h3 class="font-display text-2xl text-coffee-900">Kopi Susu Senja</h3>
+              <span class="whitespace-nowrap font-display text-lg text-coffee-500">Rp 28.000</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-coffee-600/85">
+              Espresso arabika Gayo dengan susu segar dan sentuhan gula aren.
+              Manis lembut, creamy, dan hangat di tenggorokan.
+            </p>
+            <div class="mt-5 flex items-center justify-between border-t border-cream-200 pt-5">
+              <span class="text-[11px] uppercase tracking-wider text-coffee-400">Iced / Hot</span>
+              <a href="#kontak" class="inline-flex items-center gap-2 text-sm font-semibold text-coffee-600 transition-all duration-300 group-hover:gap-3 group-hover:text-coffee-800">
+                Pesan
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kartu 2 -->
+        <article data-reveal style="transition-delay:240ms"
+                 class="group overflow-hidden rounded-3xl bg-cream-50 shadow-[0_14px_44px_-24px_rgba(38,22,15,.45)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_64px_-28px_rgba(38,22,15,.5)]">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&q=80"
+                 alt="Americano" class="h-full w-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
+            <span class="absolute left-4 top-4 rounded-full bg-cream-50/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-coffee-700 shadow-sm backdrop-blur">
+              Klasik
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4">
+              <h3 class="font-display text-2xl text-coffee-900">Americano</h3>
+              <span class="whitespace-nowrap font-display text-lg text-coffee-500">Rp 22.000</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-coffee-600/85">
+              Dua shot espresso dengan air panas, menghadirkan aroma kuat dan
+              aftertaste cokelat yang bersih. Untuk pencinta kopi sejati.
+            </p>
+            <div class="mt-5 flex items-center justify-between border-t border-cream-200 pt-5">
+              <span class="text-[11px] uppercase tracking-wider text-coffee-400">Iced / Hot</span>
+              <a href="#kontak" class="inline-flex items-center gap-2 text-sm font-semibold text-coffee-600 transition-all duration-300 group-hover:gap-3 group-hover:text-coffee-800">
+                Pesan
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kartu 3 -->
+        <article data-reveal style="transition-delay:360ms"
+                 class="group overflow-hidden rounded-3xl bg-cream-50 shadow-[0_14px_44px_-24px_rgba(38,22,15,.45)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_34px_64px_-28px_rgba(38,22,15,.5)] md:col-span-2 lg:col-span-1">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80"
+                 alt="Croissant" class="h-full w-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
+            <span class="absolute left-4 top-4 rounded-full bg-cream-50/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-coffee-700 shadow-sm backdrop-blur">
+              Pastry
+            </span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4">
+              <h3 class="font-display text-2xl text-coffee-900">Croissant</h3>
+              <span class="whitespace-nowrap font-display text-lg text-coffee-500">Rp 25.000</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-coffee-600/85">
+              Pastri Prancis dengan 27 lapisan mentega, dipanggang setiap pagi
+              hingga renyah di luar dan lembut di dalam.
+            </p>
+            <div class="mt-5 flex items-center justify-between border-t border-cream-200 pt-5">
+              <span class="text-[11px] uppercase tracking-wider text-coffee-400">Fresh Baked</span>
+              <a href="#kontak" class="inline-flex items-center gap-2 text-sm font-semibold text-coffee-600 transition-all duration-300 group-hover:gap-3 group-hover:text-coffee-800">
+                Pesan
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p data-reveal class="mt-14 text-center text-sm text-coffee-500/80">
+        Ingin melihat varian lainnya?
+        <a href="#kontak" class="font-semibold text-coffee-700 underline decoration-coffee-300 decoration-2 underline-offset-4 transition hover:text-coffee-900">
+          Hubungi kami untuk menu lengkap
+        </a>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TESTIMONI
+  ============================================================= -->
+  <section id="testimoni" class="relative scroll-mt-24 bg-cream-50 py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+      <div class="mx-auto max-w-2xl text-center">
+        <span data-reveal class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-coffee-400">
+          <span class="h-px w-8 bg-coffee-300"></span> Testimoni <span class="h-px w-8 bg-coffee-300"></span>
+        </span>
+        <h2 data-reveal style="transition-delay:100ms" class="mt-5 font-display text-3xl leading-tight text-coffee-900 sm:text-4xl lg:text-[2.75rem]">
+          Cerita dari Tamu Kami
+        </h2>
+      </div>
+
+      <div class="mt-16 grid gap-7 md:grid-cols-3">
+
+        <!-- Testimoni 1 -->
+        <figure data-reveal style="transition-delay:120ms"
+                class="flex h-full flex-col rounded-3xl border border-cream-200 bg-white/70 p-7 shadow-[0_14px_44px_-30px_rgba(38,22,15,.5)] transition-all duration-500 hover:-translate-y-1.5 hover:border-coffee-200 hover:shadow-[0_28px_54px_-30px_rgba(38,22,15,.5)]">
+          <div class="flex gap-1 text-gold">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+          </div>
+          <blockquote class="mt-5 flex-1 text-sm leading-relaxed text-coffee-600/90">
+            "Kopi Susu Senja-nya juara! Manisnya pas, tidak menutupi rasa kopinya.
+            Suasananya juga tenang banget buat kerja atau sekadar membaca buku."
+          </blockquote>
+          <figcaption class="mt-6 flex items-center gap-3.5 border-t border-cream-200 pt-6">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-coffee-600 font-display text-base font-semibold text-cream-50">AR</span>
+            <div>
+              <p class="text-sm font-semibold text-coffee-800">Anindya Rahma</p>
+              <p class="text-xs text-coffee-400">Penulis Lepas</p>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Testimoni 2 -->
+        <figure data-reveal style="transition-delay:240ms"
+                class="flex h-full flex-col rounded-3xl border border-cream-200 bg-white/70 p-7 shadow-[0_14px_44px_-30px_rgba(38,22,15,.5)] transition-all duration-500 hover:-translate-y-1.5 hover:border-coffee-200 hover:shadow-[0_28px_54px_-30px_rgba(38,22,15,.5)]">
+          <div class="flex gap-1 text-gold">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+          </div>
+          <blockquote class="mt-5 flex-1 text-sm leading-relaxed text-coffee-600/90">
+            "Americano-nya konsisten enak dari dulu. Baristanya ramah dan tahu
+            betul cara menjelaskan karakter tiap biji kopi. Recommended!"
+          </blockquote>
+          <figcaption class="mt-6 flex items-center gap-3.5 border-t border-cream-200 pt-6">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-coffee-500 font-display text-base font-semibold text-cream-50">BP</span>
+            <div>
+              <p class="text-sm font-semibold text-coffee-800">Bagas Prakoso</p>
+              <p class="text-xs text-coffee-400">Software Engineer</p>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Testimoni 3 -->
+        <figure data-reveal style="transition-delay:360ms"
+                class="flex h-full flex-col rounded-3xl border border-cream-200 bg-white/70 p-7 shadow-[0_14px_44px_-30px_rgba(38,22,15,.5)] transition-all duration-500 hover:-translate-y-1.5 hover:border-coffee-200 hover:shadow-[0_28px_54px_-30px_rgba(38,22,15,.5)]">
+          <div class="flex gap-1 text-gold">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+          </div>
+          <blockquote class="mt-5 flex-1 text-sm leading-relaxed text-coffee-600/90">
+            "Croissant-nya benar-benar renyah dan wangi mentega. Dipadukan dengan
+            kopi panas sambil menikmati senja di teras — sempurna."
+          </blockquote>
+          <figcaption class="mt-6 flex items-center gap-3.5 border-t border-cream-200 pt-6">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-coffee-700 font-display text-base font-semibold text-cream-50">SL</span>
+            <div>
+              <p class="text-sm font-semibold text-coffee-800">Sinta Larasati</p>
+              <p class="text-xs text-coffee-400">Fotografer</p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       KONTAK & LOKASI
+  ============================================================= -->
+  <section id="kontak" class="relative scroll-mt-24 overflow-hidden bg-coffee-900 py-24 text-cream-100 lg:py-32">
+    <!-- Dekorasi -->
+    <div class="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-coffee-700/40 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-coffee-600/25 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
+
+        <!-- Info -->
+        <div>
+          <span data-reveal class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
+            <span class="h-px w-8 bg-gold/60"></span> Kontak & Lokasi
+          </span>
+
+          <h2 data-reveal style="transition-delay:100ms" class="mt-5 font-display text-3xl leading-tight text-cream-50 sm:text-4xl lg:text-[2.75rem]">
+            Mari Bertemu<br /> di Jam Senja
+          </h2>
+
+          <p data-reveal style="transition-delay:180ms" class="mt-5 max-w-md leading-relaxed text-cream-100/70">
+            Mampir untuk secangkir kopi, atau kirimkan pesan untuk reservasi
+            tempat dan pesanan dalam jumlah besar.
+          </p>
+
+          <!-- Info list -->
+          <div class="mt-10 space-y-6">
+
+            <div data-reveal style="transition-delay:240ms" class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-cream-50/10 text-gold ring-1 ring-cream-50/15">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+                </svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-cream-50">Jam Operasional</p>
+                <p class="mt-1 text-sm leading-relaxed text-cream-100/65">
+                  Senin – Kamis: 08.00 – 22.00 WIB<br />
+                  Jumat – Minggu: 08.00 – 24.00 WIB
+                </p>
+              </div>
+            </div>
+
+            <div data-reveal style="transition-delay:300ms" class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-cream-50/10 text-gold ring-1 ring-cream-50/15">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z" /><circle cx="12" cy="9" r="2.5" />
+                </svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-cream-50">Alamat</p>
+                <p class="mt-1 text-sm leading-relaxed text-cream-100/65">
+                  Jl. Cendana Hangat No. 17, Kel. Menteng<br />
+                  Jakarta Pusat, DKI Jakarta 10310
+                </p>
+              </div>
+            </div>
+
+            <div data-reveal style="transition-delay:360ms" class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-cream-50/10 text-gold ring-1 ring-cream-50/15">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.8 2.1Z" />
+                </svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-cream-50">Telepon & Email</p>
+                <p class="mt-1 text-sm leading-relaxed text-cream-100/65">
+                  +62 812 3456 7890<br />
+                  halo@kopisenja.id
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sosial -->
+          <div data-reveal style="transition-delay:420ms" class="mt-10 flex items-center gap-3">
+            <span class="text-xs uppercase tracking-[0.2em] text-cream-100/45">Ikuti kami</span>
+            <span class="h-px w-8 bg-cream-100/20"></span>
+            <div class="flex gap-2.5">
+              <a href="#" aria-label="Instagram Kopi Senja" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 text-cream-100 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+                <svg class="h-4.5 w-4.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Facebook Kopi Senja" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 text-cream-100 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+              <a href="#" aria-label="TikTok Kopi Senja" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 text-cream-100 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulir -->
+        <div data-reveal style="transition-delay:200ms">
+          <div class="rounded-3xl border border-cream-50/10 bg-cream-50/[0.04] p-7 backdrop-blur-sm sm:p-9">
+            <h3 class="font-display text-2xl text-cream-50">Kirim Pesan</h3>
+            <p class="mt-2 text-sm text-cream-100/60">
+              Kami biasanya membalas dalam waktu kurang dari 24 jam.
+            </p>
+
+            <form id="contactForm" class="mt-7 space-y-5" novalidate>
+              <div>
+                <label for="nama" class="mb-2 block text-xs font-semibold uppercase tracking-wider text-cream-100/70">Nama Lengkap</label>
+                <input id="nama" name="nama" type="text" required placeholder="Nama Anda"
+                       class="w-full rounded-xl border border-cream-50/15 bg-coffee-900/40 px-4 py-3 text-sm text-cream-50 placeholder-cream-100/35 outline-none transition focus:border-gold focus:ring-4 focus:ring-gold/15" />
+              </div>
+
+              <div>
+                <label for="email" class="mb-2 block text-xs font-semibold uppercase tracking-wider text-cream-100/70">Email</label>
+                <input id="email" name="email" type="email" required placeholder="nama@email.com"
+                       class="w-full rounded-xl border border-cream-50/15 bg-coffee-900/40 px-4 py-3 text-sm text-cream-50 placeholder-cream-100/35 outline-none transition focus:border-gold focus:ring-4 focus:ring-gold/15" />
+              </div>
+
+              <div>
+                <label for="topik" class="mb-2 block text-xs font-semibold uppercase tracking-wider text-cream-100/70">Topik</label>
+                <select id="topik" name="topik"
+                        class="w-full appearance-none rounded-xl border border-cream-50/15 bg-coffee-900/40 px-4 py-3 text-sm text-cream-50 outline-none transition focus:border-gold focus:ring-4 focus:ring-gold/15">
+                  <option class="bg-coffee-900">Reservasi Tempat</option>
+                  <option class="bg-coffee-900">Pesanan Dalam Jumlah Besar</option>
+                  <option class="bg-coffee-900">Kerja Sama / Event</option>
+                  <option class="bg-coffee-900">Lainnya</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="pesan" class="mb-2 block text-xs font-semibold uppercase tracking-wider text-cream-100/70">Pesan</label>
+                <textarea id="pesan" name="pesan" rows="4" required placeholder="Tuliskan pesan Anda di sini..."
+                          class="w-full resize-none rounded-xl border border-cream-50/15 bg-coffee-900/40 px-4 py-3 text-sm text-cream-50 placeholder-cream-100/35 outline-none transition focus:border-gold focus:ring-4 focus:ring-gold/15"></textarea>
+              </div>
+
+              <button type="submit"
+                      class="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-cream-50 px-8 py-3.5 text-sm font-bold text-coffee-900 shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold">
+                Kirim Pesan
+                <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" />
+                </svg>
+              </button>
+
+              <!-- Notifikasi sukses -->
+              <div id="formSuccess" class="hidden items-center gap-3 rounded-xl border border-gold/35 bg-gold/10 px-4 py-3.5 text-sm text-cream-50">
+                <svg class="h-5 w-5 shrink-0 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" /><path d="m8.5 12.5 2.5 2.5 4.5-5" />
+                </svg>
+                <span>Terima kasih! Pesan Anda sudah terkirim. Sampai jumpa di Kopi Senja ☕</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================= -->
+  <footer class="border-t border-cream-50/10 bg-coffee-900 pb-10 pt-16 text-cream-100">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2 lg:max-w-sm">
+          <a href="#beranda" class="flex items-center gap-2.5 font-display text-2xl font-bold text-cream-50">
+            <span class="grid h-9 w-9 place-items-center rounded-full bg-coffee-600 text-cream-50">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" /><path d="M6 1v3M10 1v3M14 1v3" />
+              </svg>
+            </span>
+            Kopi <span class="text-gold">Senja</span>
+          </a>
+          <p class="mt-5 max-w-xs text-sm leading-relaxed text-cream-100/60">
+            Kedai kopi modern dengan biji lokal pilihan. Tempat terbaik untuk melambat
+            dan menikmati senja dalam setiap tegukan.
+          </p>
+
+          <!-- Sosial -->
+          <div class="mt-7 flex gap-2.5">
+            <a href="#" aria-label="Instagram" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter / X" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l16 16M20 4 4 20" />
+              </svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="grid h-10 w-10 place-items-center rounded-full bg-cream-50/10 ring-1 ring-cream-50/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-coffee-900 hover:ring-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.8 4.8 12 4.8 12 4.8s-6.8 0-8.5.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1.2 12a29 29 0 0 0 .3 4.8 2.8 2.8 0 0 0 2 2c1.7.4 8.5.4 8.5.4s6.8 0 8.5-.4a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .3-4.8 29 29 0 0 0-.3-4.8Z" />
+                <path d="m10 15 5-3-5-3v6Z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigasi -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-cream-50">Navigasi</h4>
+          <ul class="mt-5 space-y-3 text-sm text-cream-100/60">
+            <li><a href="#beranda" class="transition hover:text-gold">Beranda</a></li>
+            <li><a href="#tentang" class="transition hover:text-gold">Tentang Kami</a></li>
+            <li><a href="#menu" class="transition hover:text-gold">Menu</a></li>
+            <li><a href="#testimoni" class="transition hover:text-gold">Testimoni</a></li>
+            <li><a href="#kontak" class="transition hover:text-gold">Kontak</a></li>
+          </ul>
+        </div>
+
+        <!-- Kontak singkat -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-cream-50">Kunjungi</h4>
+          <ul class="mt-5 space-y-3 text-sm text-cream-100/60">
+            <li>Jl. Cendana Hangat No. 17<br />Jakarta Pusat 10310</li>
+            <li><a href="tel:+6281234567890" class="transition hover:text-gold">+62 812 3456 7890</a></li>
+            <li><a href="mailto:halo@kopisenja.id" class="transition hover:text-gold">halo@kopisenja.id</a></li>
+            <li class="pt-1 text-cream-100/45">Senin – Minggu<br />08.00 – 22.00 WIB</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Garis bawah -->
+      <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-cream-50/10 pt-7 text-xs text-cream-100/45 sm:flex-row">
+        <p>&copy; <span id="year">2025</span> Kopi Senja. Seluruh hak cipta dilindungi.</p>
+        <div class="flex gap-6">
+          <a href="#" class="transition hover:text-gold">Kebijakan Privasi</a>
+          <a href="#" class="transition hover:text-gold">Syarat & Ketentuan</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Tombol kembali ke atas -->
+  <button id="toTop" type="button" aria-label="Kembali ke atas"
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-12 w-12 translate-y-4 place-items-center rounded-full bg-coffee-700 text-cream-50 opacity-0 shadow-xl shadow-coffee-900/30 transition-all duration-400 hover:-translate-y-0.5 hover:bg-coffee-800">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------- 1. Navbar: berubah saat halaman digulir ---------- */
+      const navbar = document.getElementById('navbar');
+
+      function handleNavbar() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+      handleNavbar();
+      window.addEventListener('scroll', handleNavbar, { passive: true });
+
+
+      /* ---------- 2. Menu seluler ---------- */
+      const menuBtn    = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const iconOpen   = document.getElementById('iconOpen');
+      const iconClose  = document.getElementById('iconClose');
+      let menuOpen = false;
+
+      function setMenu(state) {
+        menuOpen = state;
+        mobileMenu.classList.toggle('max-h-0', !state);
+        mobileMenu.classList.toggle('max-h-[26rem]', state);
+        iconOpen.classList.toggle('hidden', state);
+        iconClose.classList.toggle('hidden', !state);
+        menuBtn.setAttribute('aria-expanded', String(state));
+        menuBtn.setAttribute('aria-label', state ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+      }
+
+      menuBtn.addEventListener('click', () => setMenu(!menuOpen));
+
+      // Tutup menu saat link diklik
+      document.querySelectorAll('.mobile-link').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      // Tutup menu saat layar diperbesar ke desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024 && menuOpen) setMenu(false);
+      });
+
+      // Tutup dengan tombol Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuOpen) setMenu(false);
+      });
+
+
+      /* ---------- 3. Scroll reveal (IntersectionObserver) ---------- */
+      const revealEls = document.querySelectorAll('[data-reveal]');
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+        );
+
+        revealEls.forEach((el) => revealObserver.observe(el));
+      } else {
+        // Fallback: langsung tampilkan
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+
+      /* ---------- 4. Highlight link navigasi yang aktif ---------- */
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('#navbar .nav-link');
+
+      function setActiveLink() {
+        const scrollPos = window.scrollY + 140;
+        let currentId = 'beranda';
+
+        sections.forEach((section) => {
+          if (scrollPos >= section.offsetTop) {
+            currentId = section.id;
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+        });
+      }
+      setActiveLink();
+      window.addEventListener('scroll', setActiveLink, { passive: true });
+
+
+      /* ---------- 5. Formulir kontak ---------- */
+      const form        = document.getElementById('contactForm');
+      const formSuccess = document.getElementById('formSuccess');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const nama  = form.nama.value.trim();
+        const email = form.email.value.trim();
+        const pesan = form.pesan.value.trim();
+
+        // Validasi sederhana
+        if (!nama || !email || !pesan) {
+          alert('Mohon lengkapi nama, email, dan pesan Anda terlebih dahulu.');
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          alert('Format email belum benar. Contoh: nama@email.com');
+          form.email.focus();
+          return;
+        }
+
+        // Simulasi pengiriman
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Mengirim...';
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+
+        setTimeout(() => {
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalHTML;
+          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+
+          formSuccess.classList.remove('hidden');
+          formSuccess.classList.add('flex');
+
+          setTimeout(() => {
+            formSuccess.classList.add('hidden');
+            formSuccess.classList.remove('flex');
+          }, 6000);
+        }, 900);
+      });
+
+
+      /* ---------- 6. Tombol kembali ke atas ---------- */
+      const toTop = document.getElementById('toTop');
+
+      function handleToTop() {
+        if (window.scrollY > 600) {
+          toTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+        } else {
+          toTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        }
+      }
+      handleToTop();
+      window.addEventListener('scroll', handleToTop, { passive: true });
+
+      toTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+
+      /* ---------- 7. Tahun otomatis di footer ---------- */
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+
+</body>
+</html>
